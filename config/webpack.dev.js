@@ -1,6 +1,8 @@
 const webpack = require('webpack')
 const { merge } = require('webpack-merge')
 
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 const common = require('./webpack.common.js')
 const paths = require('./paths')
 
@@ -30,7 +32,7 @@ module.exports = merge(common, {
           'style-loader',
           {
             loader: 'css-loader',
-            options: { sourceMap: true, importLoaders: 1, modules: true },
+            options: { sourceMap: true },
           },
           { loader: 'postcss-loader', options: { sourceMap: true } },
           { loader: 'sass-loader', options: { sourceMap: true } },
@@ -42,5 +44,13 @@ module.exports = merge(common, {
   plugins: [
     // Only update what has changed on hot reload
     new webpack.HotModuleReplacementPlugin(),
+    // Generates an HTML file from a template
+    // Generates deprecation warning: https://github.com/jantimon/html-webpack-plugin/issues/1501
+    // Only for testing the js import
+    new HtmlWebpackPlugin({
+      title: 'OpenBio Web SDK [DEV]',
+      filename: 'index.html', // output file
+      template: paths.src + '/template.html', // template file
+    }),
   ],
 })

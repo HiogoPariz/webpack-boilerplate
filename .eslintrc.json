@@ -35,7 +35,12 @@
     "browser": true,
     "es6": true
   },
-  "extends": ["eslint:recommended", "airbnb-base", "prettier"],
+  "extends": [
+    "plugin:vue/vue3-strongly-recommended",
+    "eslint:recommended",
+    "airbnb-base",
+    "prettier"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
